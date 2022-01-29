@@ -1,0 +1,64 @@
+{% extends "base.html" %}
+{% import "bootstrap/utils.html" as utils %}
+
+{% block application_styles -%}
+{{super()}}
+<style type="text/css">
+    .large {
+        font-size: 30px;
+        vertical-align: middle;
+    }
+
+    .btn {
+        background-color:rgb(221, 221, 221);
+    }
+
+    .btn:hover {
+        background-color: rgb(175, 175, 175);
+    }
+
+    .volume-text {
+        padding-top: 1.25rem; 
+        padding-bottom: 1.25rem; 
+        margin: 0px 15px;
+    }
+
+    label {
+        text-align: center;
+        margin-right: 15px;
+    }
+
+    a, a:link, a:hover, a:visited {
+        color: inherit;
+        text-decoration: none;;
+    }
+
+</style>
+{% endblock %}
+
+{% block application_content %}
+<div class="container-fluid" style="padding-left: 0px; margin-bottom: 30px">
+    <label for="Mute">Mute<br />
+        <a href="{{url_for('sound_controller.mute_master')}}">
+            <button class="btn" type="button"><i>{{ utils.icon("volume-off", ["large"]) }}</i></button>
+        </a>
+    </label>
+    <label for="Unmute">Unmute<br />
+        <a href="{{url_for('sound_controller.unmute_master')}}">
+            <button class="btn" type="button"><i>{{ utils.icon("volume-up", ["large"]) }}</i></button>
+        </a>
+    </label>
+</div>
+
+<div class="container" style="padding-left: 0px; text-decoration: none;">
+    <a href="{{url_for('sound_controller.decrease_volume')}}">
+        <button class="btn" type="button"><i>{{ utils.icon("volume-down", ["large"]) }}</i></button>
+    </a>
+    <span class="volume-text">Volume: {{ master_volume.get_master_volume()*100 }}</span> 
+    <a href="{{url_for('sound_controller.increase_volume')}}">
+        <button class="btn" type="button"><i>{{ utils.icon("volume-up", ["large"]) }}</i></button>
+    </a>
+    
+</div>
+
+{% endblock %}

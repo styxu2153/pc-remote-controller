@@ -1,0 +1,75 @@
+{% extends "base.html" %}
+{% import "bootstrap/utils.html" as utils %}
+
+{% block application_styles -%}
+{{super()}}
+<style type="text/css">
+
+    .large {
+            font-size: 20px;
+            
+        }
+
+    label {
+            text-align: center;
+            margin-right: 15px;
+        }
+
+    .form-inline .form-control{
+        display: inline-block !important;
+        width: auto !important;
+        margin: 10px 0px;
+    }       
+
+</style>
+
+{% endblock %}
+
+{% block application_content %}
+<div class="container-fluid" style="padding-left: 0px; margin-bottom: 30px">
+    <label for="Sleep">Sleep<br />
+        <button class="btn" type="button" data-toggle="modal" data-target="#formModal1"><i>{{ utils.icon("flash", ["large"]) }}</i></button>
+    </label>
+    <label for="Off">Off<br />
+        <button class="btn" type="button" data-toggle="modal" data-target="#formModal2"><i>{{ utils.icon("off", ["large"]) }}</i></button>
+    </label>
+</div>
+
+<div class="modal fade bd-example-modal-sm" id="formModal1" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-sm" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="formModalLabel">Enter PIN</h5>
+                <button class="close" type="button" data-dismiss="modal" aria-label="closed">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form action="{{ url_for('main.index') }}" class="form-inline" method="POST">
+                    <input type="password" class="form-control" placeholder="PIN" name="pin1">
+                    <button class="btn" type="submit" name="submit1">Send</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade bd-example-modal-sm" id="formModal2" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-sm" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="formModalLabel">Enter PIN</h5>
+                <button class="close" type="button" data-dismiss="modal" aria-label="closed">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form action="{{ url_for('main.index') }}" class="form-inline" method="POST">
+                    <input type="password" class="form-control" placeholder="Insert PIN" name="pin2">
+                    <button class="btn" type="submit" name="submit2">Send</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,10 @@
+<table class="table text-center">
+    <tr>
+        <td width="70px" style="justify-content: center;">
+            <h3>Stream: {{ name }}</h3>
+            <a href="{{ url_for('twitch_streams.decrease_volume', streamer=name) }}"><button class="btn" type="button"><i>{{ utils.icon("volume-down", ["large"]) }}</i></button></a>
+            <a href="{{ url_for('twitch_streams.close', streamer=name) }}"><button class="btn" type="button" type="button">Close</button></a>
+            <a href="{{ url_for('twitch_streams.increase_volume', streamer=name) }}"><button class="btn"><i>{{ utils.icon("volume-up", ["large"]) }}</i></button></a>
+        </td>
+    </tr>
+</table>

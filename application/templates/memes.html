@@ -1,0 +1,68 @@
+{% extends "base.html" %}
+
+{% block application_styles -%}
+{{super()}}
+<style>
+
+    a, a:hover, a:link, a:visited {
+        color: inherit;
+        text-decoration: none;
+    }
+
+    .meme-container {
+        height: 120px;
+    }
+
+    .meme-image {
+        max-width: 100%;
+        max-height: 100%;
+    }
+
+    .meme-footer{
+        justify-content: center;
+    }
+
+</style>
+{% endblock %}
+
+{% block application_content %}
+<div class="container">
+    <div class="row">
+        <div class="col-xs-6 col-md-6 meme-container" style="">
+            <a href="{{url_for('memes.harnold')}}"><img src="{{ url_for('static', filename='harnold.jpg') }}" alt="" class="meme-image img-responsive center-block"></a>
+        </div>
+        <div class="col-xs-6 col-md-6 meme-container">
+            <a href="{{url_for('memes.caramelldansen')}}"><img src="{{ url_for('static', filename='caramell.jpg') }}" alt="" class="meme-image img-responsive center-block"></a>
+        </div>
+    </div>
+    <hr>
+    <div class="row">
+        <div class="col-xs-6 col-md-6 meme-container" style="">
+            <a href="{{url_for('memes.coco')}}"><img src="{{ url_for('static', filename='coco.png') }}" alt="" class="meme-image img-responsive center-block"></a>
+        </div>
+        <div class="col-xs-6 col-md-6 meme-container">
+            <a href=""><img src="{{ url_for('static', filename='placeholder.png') }}" alt="" class="meme-image img-responsive center-block"></a>
+        </div>
+    </div>
+</div>
+
+{% endblock %}
+
+{% block footer %}
+<footer class="footer navbar-fixed-bottom navbar-default meme-footer">
+    <div class="container">
+        <div class="card-footer text-center" style="padding: 20px;">
+            <a href="#" id="play-pause-btn"><button class="btn" type="button">Play/Pause</button></a>
+            <a href="#" id="close-vid-btn"><button class="btn" type="button">Close</button></a>
+        </div>
+    </div>
+</footer>
+{%- endblock footer %}
+
+{% block application_scripts %}
+{{ super() }}
+<script type=text/javascript>
+    call_without_reload("a#play-pause-btn", "{{url_for('memes.pause_play')}}")
+    call_without_reload("a#close-vid-btn", "{{url_for('memes.close_video')}}")
+</script>
+{% endblock %}

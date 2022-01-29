@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+{% import "bootstrap/utils.html" as utils %}
+
+{% block application_styles -%}
+{{super()}}
+<style>
+    .form-inline .form-control{
+        display: inline-block !important;
+        width: auto !important;
+        margin: 10px 0px;
+    }
+
+    .large {
+        font-size: 20px;
+        vertical-align: middle;
+    }
+</style>
+
+
+{% endblock %}
+
+{% block application_content %}
+<form class="form-inline" action="{{ url_for('twitch_streams.twitch') }}" method="post">
+    <div class="form-group">
+        <input type="text" class="form-control" placeholder="Twitch username" name="username">
+        <button class="btn open-btn" type="submit">Open</button>
+    </div>
+</form>
+{% for name, controller in twitch_windows.items() %}
+    {% include '_twitch_controller.html' %}
+{% endfor %}
+
+{% endblock %}
